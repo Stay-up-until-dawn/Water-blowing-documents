@@ -1,0 +1,40 @@
+import pyautogui
+from time import sleep
+import threading
+
+def start(a,b):
+
+    sleep(1.5) #休眠 避免没点到
+
+    pyautogui.click(clicks=1) #点进输入框
+
+    for _ in range(1,a+1):    #确定次数
+
+        pyautogui.typewrite(message=b) #内容
+
+        pyautogui.press('enter',interval=0.000000001) #回车发送
+
+
+
+def main():
+    my_thread = threading.Thread(target=start,args=(a,b,))
+    my_thread.setDaemon(True)
+    my_thread.start()
+
+
+
+
+
+while True:
+    a = int(input('请输入次数>>>'))
+    b = str(input('请输入内容>>>'))
+
+    start(a,b)
+
+    
+    
+
+    if __name__ == '__main__':
+        main()
+
+    print('轰炸完成')
